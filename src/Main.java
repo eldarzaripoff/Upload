@@ -27,8 +27,9 @@ public class Main {
 
         gameProgress1.zipFiles(pathForZip, filePaths);
         gameProgress1.openZip(pathForZip, "C://Users//Эльдар//OneDrive//Рабочий стол//Games//GunRunner//savegames");
-        gameProgress1.openProgress(path1);
-        gameProgress1.toString();
+        gameProgress1.openProgress("C://Users//Эльдар//OneDrive//Рабочий стол//Games//GunRunner//savegames//save1.dat");
+        System.out.println(gameProgress1);
+
 
     }
 

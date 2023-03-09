@@ -57,12 +57,12 @@ public class GameProgress implements Serializable {
     }
 
     public void openZip(String pathForZip, String pathOpenZip) {
-        try (ZipInputStream zis = new ZipInputStream(new FileInputStream("C://Users//Эльдар//OneDrive//Рабочий стол//Games//GunRunner//savegames//zip.zip"))) {
+        try (ZipInputStream zis = new ZipInputStream(new FileInputStream(pathForZip))) {
            ZipEntry entry;
            String name;
            while((entry = zis.getNextEntry()) != null) {
                name = entry.getName();
-               FileOutputStream fout = new FileOutputStream(name);
+               FileOutputStream fout = new FileOutputStream(pathOpenZip + "//" + name);
                for (int c = zis.read(); c != -1; c = zis.read()) {
                    fout.write(c);
                }
@@ -76,12 +76,13 @@ public class GameProgress implements Serializable {
     }
 
     public GameProgress openProgress(String path) {
+        GameProgress gameProgress = null;
         try (FileInputStream fis = new FileInputStream(path);
-        ObjectInputStream ois = new ObjectInputStream(fis)) {
-            ois.readObject();
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+            gameProgress = (GameProgress) ois.readObject();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return this;
+        return gameProgress;
     }
 }
